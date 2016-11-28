@@ -318,20 +318,51 @@ class Task { // свойства указывать только в констр
 
 
 let task = new Task('убрать в комнатe');
-// let task2 = new Task();
+let task2 = new Task();
 // console.log(Task);
 // console.log(task);
 // task.complete();
 // console.log(task2.title);
 console.log(task.done);
 task.complete();
+
 console.log(task.done);
+console.log(task2.done);
 
+// наследование
 
+class NewTask {
+    constructor(title){
+        this.title = title;
+        this.done = false;
+        console.log('Новая задача');
+    }
+    complete(){
+        this.done = true;
+        console.log(`Задача "${this.title}" выполнена`)
+    }
+}
 
+class SubNewTask extends NewTask { // ООП
+    constructor(title){
+        super(title); // super - при объявлении конструктора в саб классе берет его у родителя
+                        //  передаем title из родительского конструктора
+    }
+    complete(){
+        super.complete();
+        console.log(`Подзадача "${this.title}" выполнена`)
+    }
 
+}
 
+let newTask = new NewTask('Задача №1');
+let newSubTask = new SubNewTask('подзадача к Задаче №1');
 
+newTask.complete()
+// newSubTask.complete()
+
+console.log(newTask);
+console.log(newSubTask);
 
 
 //стрелочная функция
